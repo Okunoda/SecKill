@@ -1,0 +1,42 @@
+spring:
+  thymeleaf:
+    #关闭缓存
+    cache: false
+  datasource:
+    #配置连接
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seckill?useUnicode=true&ServerTimeZone=Asia/shanghai&characterEncoding=UTF-8
+    username: root
+    password: 123456
+
+    #数据库连接池
+    hikari:
+    #连接池名
+      pool-name:  DateHikariCP
+      #最小空闲连接
+      minimum-idle: 5
+      #空闲连接最大存活时间(默认10分钟——600000）
+      idle-timeout: 1800000
+      #最大连接数
+      maximum-pool-size: 10
+      #从连接池返回的连接自动提交
+      auto-commit: true
+      #最大存活时间，0表示永久存活，默认30分钟——1800000
+      max-lifetime: 1800000
+      #连接超时时间（默认30秒）
+      connection-timeout: 30000
+      #心跳机制
+      connection-test-query: SELECT 1
+
+#Mybatis-plus配置
+mybatis-plus:
+  #mapper文件映射地址
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  #配置MybBatis数据返回类型的别名（默认是类名）
+  type-aliases-package: website.okunoda.secondtokill.pojo
+
+#MyBatis SQL打印日志（方法接口所在的包，并非mapper.xml文件所在的地方）
+logging:
+  level:
+    website.okunoda.secondtokill.mapper: debug
+
