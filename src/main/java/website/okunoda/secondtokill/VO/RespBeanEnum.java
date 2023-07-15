@@ -11,12 +11,15 @@ public enum RespBeanEnum {
     /*
     通用结果返回
      */
-    SUCCESS(200,"成功"),
-    ERROR(500,"服务器异常"),
+    SUCCESS(200, "成功"),
+    ERROR(500, "服务器异常"),
 
-    LOGIN_INFO_ERROR(500201,"用户名或密码错误"),
-    MOBILE_ERROR(500202,"未找到该用户！")
-    ;
+    /*
+    参数校验结果
+     */
+    LOGIN_INFO_ERROR(500201, "用户名或密码错误"),
+    MOBILE_ERROR(500202, "未找到该用户！"),
+    BIND_ERROR(500203, "参数校验错误！");
 
     private final Integer code;
     private final String msg;
