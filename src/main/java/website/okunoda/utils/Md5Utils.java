@@ -26,7 +26,7 @@ public class Md5Utils {
      */
     public static String inputPassToFromPass(String inputPass){
         //随机取密钥的位数，进一步提高加密性
-        String str = salt.charAt(0) + salt.charAt(3) + inputPass + salt.charAt(5) + salt.charAt(7);
+        String str = ""+salt.charAt(0) + salt.charAt(3) + inputPass + salt.charAt(5) + salt.charAt(7);
         return md5(str);
     }
 
@@ -37,7 +37,7 @@ public class Md5Utils {
      * @return
      */
     public static String fromPassToDBPass(String fromPass , String salt){
-        String str = salt.charAt(0) + salt.charAt(3) + fromPass + salt.charAt(5) + salt.charAt(7);
+        String str = ""+salt.charAt(0) + salt.charAt(3) + fromPass + salt.charAt(5) + salt.charAt(7);
         return md5(fromPass);
     }
 
