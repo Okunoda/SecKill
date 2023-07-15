@@ -1,4 +1,4 @@
-package website.okunoda.utils;
+package website.okunoda.secondtokill.utils;
 
 import org.thymeleaf.util.StringUtils;
 
