@@ -8,6 +8,8 @@ import website.okunoda.secondtokill.VO.RespBean;
 import website.okunoda.secondtokill.service.IUserService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @Controller
@@ -26,8 +28,8 @@ public class LoginController {
 
     @PostMapping("doLogin")
     @ResponseBody
-    public RespBean doLogin(@Valid LoginVO model) {
+    public RespBean doLogin(@Valid LoginVO model, HttpServletRequest request, HttpServletResponse response) {
         log.info("{}", model);
-        return userService.doLogin(model);
+        return userService.doLogin(model, request, response);
     }
 }

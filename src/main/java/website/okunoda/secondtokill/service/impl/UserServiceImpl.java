@@ -9,9 +9,13 @@ import website.okunoda.secondtokill.exception.GlobalException;
 import website.okunoda.secondtokill.mapper.UserMapper;
 import website.okunoda.secondtokill.pojo.User;
 import website.okunoda.secondtokill.service.IUserService;
+import website.okunoda.secondtokill.utils.CookieUtil;
 import website.okunoda.secondtokill.utils.Md5Utils;
+import website.okunoda.secondtokill.utils.UUIDUtil;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -27,7 +31,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private UserMapper userMapper;
 
     @Override
-    public RespBean doLogin(LoginVO model) {
+    public RespBean doLogin(LoginVO model, HttpServletRequest request, HttpServletResponse response) {
 /*        //校验参数格式
         if (model.getMobile() == null || model.getPassword() == null) {
             return RespBean.error(RespBeanEnum.LOGIN_INFO_ERROR);
@@ -48,6 +52,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 //            return RespBean.error(RespBeanEnum.LOGIN_INFO_ERROR);
             throw new GlobalException(RespBeanEnum.LOGIN_INFO_ERROR);
         }
+        String ticket = UUIDUtil.uuid();
+        request.getSession().setAttribute(ticket, user);
+        CookieUtil.setCookie(request, response, "userTicket", ticket);
         return RespBean.success();
     }
 }

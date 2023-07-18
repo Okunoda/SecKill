@@ -5,9 +5,12 @@ import website.okunoda.secondtokill.VO.LoginVO;
 import website.okunoda.secondtokill.VO.RespBean;
 import website.okunoda.secondtokill.pojo.User;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author okunoda
@@ -15,6 +18,6 @@ import website.okunoda.secondtokill.pojo.User;
  */
 public interface IUserService extends IService<User> {
 
-    RespBean doLogin(LoginVO model);
+    RespBean doLogin(LoginVO model, HttpServletRequest request, HttpServletResponse response);
 
 }
