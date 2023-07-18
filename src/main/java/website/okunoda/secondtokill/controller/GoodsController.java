@@ -6,24 +6,35 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.thymeleaf.util.StringUtils;
 import website.okunoda.secondtokill.pojo.User;
+import website.okunoda.secondtokill.service.IUserService;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/goods")
 public class GoodsController {
-    @RequestMapping("/toList")
-    public String toList(HttpServletRequest request, Model model, @CookieValue("userTicket") String ticket) {
+    @Resource
+    IUserService userService;
 
-        if (StringUtils.isEmpty(ticket)) {
-            return "login";
-        }
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute(ticket);
-        if (user == null) {
-            return "login";
-        }
+    @RequestMapping("/toList")
+//    public String toList(HttpServletRequest request, HttpServletResponse response , Model model, @CookieValue("userTicket") String ticket) {
+    public String toList(Model model, User user) {
+
+//        if (StringUtils.isEmpty(ticket)) {
+//            return "login";
+//        }
+//        HttpSession session = request.getSession();
+//        User user = (User) session.getAttribute(ticket);
+
+        //获取 redis 中的对象信息
+//        User user = userService.getUserByCookie(request, response, ticket);
+//
+//        if (user == null) {
+//            return "login";
+//        }
         model.addAttribute("user", user);
         return "goodsList";
     }

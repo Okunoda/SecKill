@@ -1,7 +1,9 @@
 package website.okunoda.secondtokill.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 import website.okunoda.secondtokill.VO.LoginVO;
 import website.okunoda.secondtokill.VO.RespBean;
 import website.okunoda.secondtokill.VO.RespBeanEnum;
@@ -30,6 +32,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Resource
     private UserMapper userMapper;
 
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
+
     @Override
     public RespBean doLogin(LoginVO model, HttpServletRequest request, HttpServletResponse response) {
 /*        //校验参数格式
@@ -53,8 +58,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             throw new GlobalException(RespBeanEnum.LOGIN_INFO_ERROR);
         }
         String ticket = UUIDUtil.uuid();
-        request.getSession().setAttribute(ticket, user);
-        CookieUtil.setCookie(request, response, "userTicket", ticket);
+        //将用户信息存入 Redis 中
+        redisTemplate.opsForValue().set("user-" + ticket, user);
+//        request.getSession().setAttribute(ticket, user);
+        CookieUtil.setCookie(request, response, "ticket", ticket);
         return RespBean.success();
+    }
+
+    @Override
+    public User getUserByCookie(HttpServletRequest request, HttpServletResponse response, String ticket) {
+        if (StringUtils.isEmpty(ticket)) {
+            return null;
+        }
+        User user = (User) redisTemplate.opsForValue().get("user-" + ticket);
+        if (user != null) {
+            CookieUtil.setCookie(request, response, "ticket", ticket);
+        }
+        return user;
     }
 }
