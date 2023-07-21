@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.thymeleaf.util.StringUtils;
 import website.okunoda.secondtokill.pojo.User;
+import website.okunoda.secondtokill.service.IGoodsService;
 import website.okunoda.secondtokill.service.IUserService;
 
 import javax.annotation.Resource;
@@ -17,7 +18,10 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/goods")
 public class GoodsController {
     @Resource
-    IUserService userService;
+    private IUserService userService;
+
+    @Resource
+    private IGoodsService goodsService;
 
     @RequestMapping("/toList")
 //    public String toList(HttpServletRequest request, HttpServletResponse response , Model model, @CookieValue("userTicket") String ticket) {
@@ -36,6 +40,7 @@ public class GoodsController {
 //            return "login";
 //        }
         model.addAttribute("user", user);
+        model.addAttribute("goodsList", goodsService.queryAllGoodsVo());
         return "goodsList";
     }
 }

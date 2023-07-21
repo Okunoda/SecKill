@@ -1,7 +1,10 @@
 package website.okunoda.secondtokill.service;
 
+import website.okunoda.secondtokill.VO.GoodsVo;
 import website.okunoda.secondtokill.pojo.Goods;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IGoodsService extends IService<Goods> {
 
+    List<GoodsVo> queryAllGoodsVo();
 }

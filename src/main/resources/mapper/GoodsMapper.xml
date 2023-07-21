@@ -13,4 +13,11 @@
         <result column="goods_stock" property="goodsStock"/>
     </resultMap>
 
+
+    <select id="queryAllGoodsVo" resultType="website.okunoda.secondtokill.VO.GoodsVo">
+        select *
+        from t_goods tg
+                 left join t_seckill_goods tsg on tg.id = tsg.goods_id
+    </select>
+
 </mapper>
