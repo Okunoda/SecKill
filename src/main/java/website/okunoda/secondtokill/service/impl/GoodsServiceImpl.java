@@ -28,4 +28,14 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
     public List<GoodsVo> queryAllGoodsVo() {
         return mapper.queryAllGoodsVo();
     }
+
+    @Override
+    public Goods queryById(Long id) {
+        return mapper.queryById(id);
+    }
+
+    @Override
+    public GoodsVo queryGoodsVoById(Long id) {
+        return mapper.queryGoodsVoById(id);
+    }
 }

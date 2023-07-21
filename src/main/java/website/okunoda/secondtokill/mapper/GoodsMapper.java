@@ -17,4 +17,8 @@ import java.util.List;
 public interface GoodsMapper extends BaseMapper<Goods> {
 
     List<GoodsVo> queryAllGoodsVo();
+
+    Goods queryById(Long id);
+
+    GoodsVo queryGoodsVoById(Long id);
 }

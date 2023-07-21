@@ -19,5 +19,17 @@
         from t_goods tg
                  left join t_seckill_goods tsg on tg.id = tsg.goods_id
     </select>
+    <select id="queryById" resultType="website.okunoda.secondtokill.pojo.Goods">
+        select *
+        from t_goods tg
+        where tg.id = #{id}
+    </select>
+
+    <select id="queryGoodsVoById" resultType="website.okunoda.secondtokill.VO.GoodsVo">
+        select *
+        from t_goods tg
+                 left join t_seckill_goods tsg on tg.id = tsg.goods_id
+        where tg.id = #{id}
+    </select>
 
 </mapper>

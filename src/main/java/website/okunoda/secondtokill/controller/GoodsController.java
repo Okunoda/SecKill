@@ -2,9 +2,11 @@ package website.okunoda.secondtokill.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
+import website.okunoda.secondtokill.VO.GoodsVo;
+import website.okunoda.secondtokill.VO.RespBean;
+import website.okunoda.secondtokill.pojo.Goods;
 import website.okunoda.secondtokill.pojo.User;
 import website.okunoda.secondtokill.service.IGoodsService;
 import website.okunoda.secondtokill.service.IUserService;
@@ -42,5 +44,14 @@ public class GoodsController {
         model.addAttribute("user", user);
         model.addAttribute("goodsList", goodsService.queryAllGoodsVo());
         return "goodsList";
+    }
+
+    @GetMapping("toDetail/{id}")
+    public String toDetail(@PathVariable Long id, Model model, User user) {
+        model.addAttribute("user", user);
+
+        GoodsVo goods = goodsService.queryGoodsVoById(id);
+        model.addAttribute("goods", goods);
+        return "goodsDetail";
     }
 }

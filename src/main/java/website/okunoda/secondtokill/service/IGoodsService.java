@@ -17,4 +17,8 @@ import java.util.List;
 public interface IGoodsService extends IService<Goods> {
 
     List<GoodsVo> queryAllGoodsVo();
+
+    Goods queryById(Long id);
+
+    GoodsVo queryGoodsVoById(Long id);
 }
