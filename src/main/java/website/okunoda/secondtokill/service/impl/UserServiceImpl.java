@@ -18,6 +18,7 @@ import website.okunoda.secondtokill.utils.UUIDUtil;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -51,6 +52,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 //            return RespBean.error(RespBeanEnum.LOGIN_INFO_ERROR);
             throw new GlobalException(RespBeanEnum.LOGIN_INFO_ERROR);
         }
+        //TODO ---  此时设置的 redis key 不会过期，需要优化
         //匹配密码
         String dbPass = Md5Utils.fromPassToDBPass(model.getPassword(), user.getSalt());
         if (!dbPass.equals(user.getPassword())) {
