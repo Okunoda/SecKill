@@ -84,88 +84,99 @@ public class Order implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
+    public Order setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public Order setUserId(Long userId) {
         this.userId = userId;
+        return this;
     }
 
     public Long getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(Long goodsId) {
+    public Order setGoodsId(Long goodsId) {
         this.goodsId = goodsId;
+        return this;
     }
 
     public Long getDeliveryAddrId() {
         return deliveryAddrId;
     }
 
-    public void setDeliveryAddrId(Long deliveryAddrId) {
+    public Order setDeliveryAddrId(Long deliveryAddrId) {
         this.deliveryAddrId = deliveryAddrId;
+        return this;
     }
 
     public String getGoodsName() {
         return goodsName;
     }
 
-    public void setGoodsName(String goodsName) {
+    public Order setGoodsName(String goodsName) {
         this.goodsName = goodsName;
+        return this;
     }
 
     public Integer getGoodsCount() {
         return goodsCount;
     }
 
-    public void setGoodsCount(Integer goodsCount) {
+    public Order setGoodsCount(Integer goodsCount) {
         this.goodsCount = goodsCount;
+        return this;
     }
 
     public BigDecimal getGoodsPrice() {
         return goodsPrice;
     }
 
-    public void setGoodsPrice(BigDecimal goodsPrice) {
+    public Order setGoodsPrice(BigDecimal goodsPrice) {
         this.goodsPrice = goodsPrice;
+        return this;
     }
 
     public Integer getOrderChannel() {
         return orderChannel;
     }
 
-    public void setOrderChannel(Integer orderChannel) {
+    public Order setOrderChannel(Integer orderChannel) {
         this.orderChannel = orderChannel;
+        return this;
     }
 
     public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public Order setStatus(Integer status) {
         this.status = status;
+        return this;
     }
 
     public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public Order setCreateDate(Date createDate) {
         this.createDate = createDate;
+        return this;
     }
 
     public Date getPayDate() {
         return payDate;
     }
 
-    public void setPayDate(Date payDate) {
+    public Order setPayDate(Date payDate) {
         this.payDate = payDate;
+        return this;
     }
 
     @Override

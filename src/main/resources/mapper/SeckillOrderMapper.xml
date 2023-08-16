@@ -9,5 +9,14 @@
         <result column="order_id" property="orderId"/>
         <result column="goods_id" property="goodsId"/>
     </resultMap>
-
+    <insert id="insertSeckillOrder">
+        insert into t_seckill_order (user_id, order_id, goods_id)
+        values (#{order.userId}, #{order.orderId}, #{order.goodsId})
+    </insert>
+    <select id="queryOrderByGoodsIdAndUserId" resultType="website.okunoda.secondtokill.pojo.SeckillOrder">
+        select *
+        from t_seckill_order tso
+        where tso.goods_id = #{goodsId}
+          and tso.user_id = #{userId}
+    </select>
 </mapper>

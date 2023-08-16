@@ -55,11 +55,14 @@ public class GoodsController {
         model.addAttribute("goods", goods);
         //判断秒杀时间是否开始
         Date now = new Date();
+        //倒计时时间差
+        long gap = 0;
         //秒杀状态
         int secKillStatus = 0;
         if (now.before(goods.getStartDate())) {
             //秒杀还未开始
-            long gap = goods.getStartDate().getTime() - now.getTime();
+            gap = now.getTime() - goods.getStartDate().getTime();
+
             //获取秒数
 //            gap /= 1000L;
 //            long second = gap % 60;
@@ -73,16 +76,16 @@ public class GoodsController {
 //            gap /= 24;
 //            long day = gap;
 
-            model.addAttribute("remainSeconds", gap / 1000L);
         } else if (now.after(goods.getEndDate())) {
             //秒杀已经结束
             secKillStatus = 2;
+            gap = -1;
         } else {
             //秒杀进行中
             secKillStatus = 1;
         }
+        model.addAttribute("remainSeconds", gap / 1000L);
         model.addAttribute("secKillStatus", secKillStatus);
-
 
         return "goodsDetail";
     }

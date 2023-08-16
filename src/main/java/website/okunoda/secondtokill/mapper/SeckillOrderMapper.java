@@ -1,5 +1,6 @@
 package website.okunoda.secondtokill.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import website.okunoda.secondtokill.pojo.SeckillOrder;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -13,4 +14,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface SeckillOrderMapper extends BaseMapper<SeckillOrder> {
 
+    SeckillOrder queryOrderByGoodsIdAndUserId(Long goodsId, Long userId);
+
+    Integer insertSeckillOrder(@Param("order") SeckillOrder seckillOrder);
 }

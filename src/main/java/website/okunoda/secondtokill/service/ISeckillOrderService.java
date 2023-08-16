@@ -1,5 +1,7 @@
 package website.okunoda.secondtokill.service;
 
+import org.springframework.stereotype.Service;
+import website.okunoda.secondtokill.pojo.Order;
 import website.okunoda.secondtokill.pojo.SeckillOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -11,6 +13,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author okunoda
  * @since 2023-07-18
  */
+
 public interface ISeckillOrderService extends IService<SeckillOrder> {
 
+    SeckillOrder queryOrderByGoodsIdAndUserId(Long goodsId, Long userId);
+
+    Order doSeckill(Long goodsId, Long userId);
 }

@@ -1,6 +1,7 @@
 package website.okunoda.secondtokill.config;
 
 import org.springframework.core.MethodParameter;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -22,6 +23,9 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
     @Resource
     private IUserService userService;
 
+    @Resource
+    private RedisTemplate redisTemplate;
+
     /**
      * 判断此次操作是否需要需要处理
      *
@@ -30,7 +34,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
      */
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        Class<?> clazz = parameter.getClass();
+        Class<?> clazz = parameter.getParameterType();
         return clazz == User.class;
     }
 

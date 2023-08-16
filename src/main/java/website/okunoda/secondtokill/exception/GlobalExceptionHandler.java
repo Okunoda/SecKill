@@ -7,7 +7,7 @@ import website.okunoda.secondtokill.VO.RespBean;
 import website.okunoda.secondtokill.VO.RespBeanEnum;
 
 
-@RestControllerAdvice
+//@RestControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public RespBean exceptionHandler(Exception e) {

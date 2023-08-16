@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.io.Serializable;
 
@@ -17,6 +18,7 @@ import java.io.Serializable;
  * @since 2023-07-18
  */
 @TableName("t_goods")
+@Qualifier("goods")
 public class Goods implements Serializable {
 
     private static final long serialVersionUID = 1L;
