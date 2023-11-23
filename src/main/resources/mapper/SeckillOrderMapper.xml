@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="website.okunoda.secondtokill.mapper.SeckillOrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="website.okunoda.secondtokill.pojo.SeckillOrder">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="order_id" property="orderId"/>
+        <result column="goods_id" property="goodsId"/>
+    </resultMap>
+    <insert id="insertSeckillOrder">
+        insert into t_seckill_order (user_id, order_id, goods_id)
+        values (#{order.userId}, #{order.orderId}, #{order.goodsId})
+    </insert>
+    <select id="queryOrderByGoodsIdAndUserId" resultType="website.okunoda.secondtokill.pojo.SeckillOrder">
+        select *
+        from t_seckill_order tso
+        where tso.goods_id = #{goodsId}
+          and tso.user_id = #{userId}
+    </select>
+</mapper>
